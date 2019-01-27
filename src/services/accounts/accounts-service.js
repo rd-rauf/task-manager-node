@@ -13,7 +13,7 @@ class AccountService {
             [Op.eq]: email
           }
         },
-        attributes: ["email", "firstName", "lastName"],
+        attributes: ["email", "firstName", "lastName", "password"],
         raw: true
       })
       .then(userInfo => {
@@ -47,7 +47,10 @@ class AccountService {
   }
 
   getUsers() {
-    return usersModel.findAll({ raw: true });
+    return usersModel.findAll({
+      raw: true,
+      attributes: ["id", "email", "firstName", "lastName", "isActive"]
+    });
   }
 }
 

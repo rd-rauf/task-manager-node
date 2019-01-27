@@ -45,7 +45,9 @@ class AccountController {
           res.status(response.code).json(response);
         }
       })
-      .catch(error => next(error));
+      .catch(error => {
+        next(error);
+      });
   }
 
   signUp(req, res, next) {
@@ -71,7 +73,9 @@ class AccountController {
               res.status(response.code).json(response);
             }
           })
-          .catch(error => next(error));
+          .catch(error => {
+            next(error);
+          });
       } else {
         next({
           message: validationFails.message
@@ -81,7 +85,16 @@ class AccountController {
   }
 
   getUsers(req, res, next) {
-    return this.accountService.getUsers();
+    return this.accountService.getUsers().then(users => {
+      const response = responseFormat.wrap(
+        null,
+        200,
+        "success",
+        "Users list",
+        users
+      );
+      res.status(response.code).json(response);
+    });
   }
 }
 module.exports = AccountController;
