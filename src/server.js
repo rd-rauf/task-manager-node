@@ -10,6 +10,8 @@ const helmet = require("helmet");
 const chalk = require("chalk");
 
 const responseFormat = require("./core/response-format");
+const applyAuthMiddleware = require("./core/middlewares/auth");
+
 const initRoutes = require("./routes");
 const log = console.log;
 
@@ -22,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+applyAuthMiddleware(app);
 initRoutes(app);
 
 app.use((error, req, res, next) => {
