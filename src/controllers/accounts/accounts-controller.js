@@ -22,15 +22,11 @@ class AccountController {
             firstName: userInfo.firstName,
             lastName: userInfo.lastName
           };
-          token = jwt.sign({ data: payload }, process.env.JWTSECRETKEY, {
-            expiresIn: "1d"
-          });
+          token = jwt.sign({ data: payload }, process.env.JWTSECRETKEY, { expiresIn: "1d" });
           payload.userAuthToken = token;
-          response = responseFormat.wrap(null, 200, "success", "Login successful", payload);
-          res.status(response.code).json(response);
+          res.status(200).json(responseFormat.wrap(null, 200, "success", "Login successful", payload));
         } else {
-          response = responseFormat.wrap(null, 200, "failure", "Invalid user/ password", null);
-          res.status(response.code).json(response);
+          res.status(200).json(responseFormat.wrap(null, 200, "failure", "Invalid user/ password", null));
         }
       })
       .catch(error => {
@@ -51,8 +47,7 @@ class AccountController {
                 firstName: userInfo.firstName,
                 lastName: userInfo.lastName
               };
-              const response = responseFormat.wrap(null, 200, "success", "User registered successfully", payload);
-              res.status(response.code).json(response);
+              res.status(200).json(responseFormat.wrap(null, 200, "success", "User registered successfully", payload));
             }
           })
           .catch(error => {
@@ -68,8 +63,7 @@ class AccountController {
 
   getUsers(req, res, next) {
     return this.accountService.getUsers().then(users => {
-      const response = responseFormat.wrap(null, 200, "success", "Users list", users);
-      res.status(response.code).json(response);
+      res.status(200).json(responseFormat.wrap(null, 200, "success", "Users list", users));
     });
   }
 }
