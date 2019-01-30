@@ -10,19 +10,6 @@ const usersModel = sequelizeConnection.define("users", {
     type: Sequelize.DataTypes.STRING,
     allowNull: false,
     unique: true
-    // validate: {
-    //   isEmail: {
-    //     msg: "Must be a valid gmail id!"
-    //   },
-    //   notNull: true,
-    //   notEmpty: true,
-    //   len: [5, 100],
-    //   isGmail(value) {
-    //     if (value && value.length > 5) {
-    //       return value.indexOf("gmail") > 2;
-    //     }
-    //   }
-    // }
   },
   firstName: Sequelize.DataTypes.STRING,
   lastName: Sequelize.DataTypes.STRING,
