@@ -28,25 +28,13 @@ applyAuthMiddleware(app);
 initRoutes(app);
 
 app.use((error, req, res, next) => {
-  response = responseFormat.wrap(
-    error,
-    200,
-    "failure",
-    "Unhandled error occurred.",
-    null
-  );
+  response = responseFormat.wrap(error, 200, "failure", "Unhandled error occurred.", null);
   res.status(response.code).json(response);
 });
 
 const server = http.createServer(app);
 const port = process.env.PORT;
 const env = process.env.NODE_ENV;
-server.listen(port, () =>
-  log(
-    chalk.green.bold(
-      `\nUsing environment: ${env}\nServer running on port ${port}\n`
-    )
-  )
-);
+server.listen(port, () => log(chalk.green.bold(`\nUsing environment: ${env}\nServer running on port ${port}\n`)));
 
 module.exports = app;

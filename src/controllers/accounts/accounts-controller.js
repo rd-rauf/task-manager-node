@@ -26,22 +26,10 @@ class AccountController {
             expiresIn: "1d"
           });
           payload.userAuthToken = token;
-          response = responseFormat.wrap(
-            null,
-            200,
-            "success",
-            "Login successful",
-            payload
-          );
+          response = responseFormat.wrap(null, 200, "success", "Login successful", payload);
           res.status(response.code).json(response);
         } else {
-          response = responseFormat.wrap(
-            null,
-            200,
-            "failure",
-            "Invalid user/ password",
-            null
-          );
+          response = responseFormat.wrap(null, 200, "failure", "Invalid user/ password", null);
           res.status(response.code).json(response);
         }
       })
@@ -63,13 +51,7 @@ class AccountController {
                 firstName: userInfo.firstName,
                 lastName: userInfo.lastName
               };
-              const response = responseFormat.wrap(
-                null,
-                200,
-                "success",
-                "User registered successfully",
-                payload
-              );
+              const response = responseFormat.wrap(null, 200, "success", "User registered successfully", payload);
               res.status(response.code).json(response);
             }
           })
@@ -86,13 +68,7 @@ class AccountController {
 
   getUsers(req, res, next) {
     return this.accountService.getUsers().then(users => {
-      const response = responseFormat.wrap(
-        null,
-        200,
-        "success",
-        "Users list",
-        users
-      );
+      const response = responseFormat.wrap(null, 200, "success", "Users list", users);
       res.status(response.code).json(response);
     });
   }
