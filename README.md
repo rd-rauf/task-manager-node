@@ -1,6 +1,6 @@
-# Task Manager - Node Express Rest API (ES6)
+# Node Express Rest API (ES6) Starter
 
-Rest API project scaffold, built using:
+Rest API starter, built using:
 
 - Node.js version 10.15 LTS.
 
